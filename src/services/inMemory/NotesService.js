@@ -6,7 +6,7 @@ class NotesService {
     this._notes = [];
   }
 
-  addNotes({ title, body, tags }) {
+  addNote({ title, body, tags }) {
     const id = nanoid(16);
     const createdAt = new Date().toISOString();
     const updatedAt = createdAt;
@@ -27,6 +27,8 @@ class NotesService {
     if (!isSuccess) {
       throw new Error('Catatan gagal ditambahkan');
     }
+
+    return id;
   }
 
   getNotes() {
