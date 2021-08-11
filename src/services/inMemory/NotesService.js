@@ -45,7 +45,7 @@ class NotesService {
     return note;
   }
 
-  editNoteBy(id, { title, body, tags }) {
+  editNoteById(id, { title, body, tags }) {
     const index = this._notes.findIndex((n) => n.id === id);
 
     if (index === -1) {
