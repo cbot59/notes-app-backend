@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 const { nanoid } = require('nanoid');
-const notes = require('../../api/notes');
 
 class NotesService {
   constructor() {
