@@ -1,3 +1,5 @@
+const ClientError = require('../../exceptions/ClientError');
+
 /* eslint-disable no-underscore-dangle */
 class NotesHandler {
   constructor(service, validator) {
@@ -28,12 +30,22 @@ class NotesHandler {
         })
         .code(201);
     } catch (error) {
+      if (error instanceof ClientError) {
+        return h
+          .response({
+            status: 'fail',
+            message: error.message,
+          })
+          .code(error.statusCode);
+      }
+
+      console.error(error);
       return h
         .response({
-          status: 'fail',
-          message: error.message,
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         })
-        .code(400);
+        .code(500);
     }
   }
 
@@ -59,12 +71,22 @@ class NotesHandler {
         },
       };
     } catch (error) {
+      if (error instanceof ClientError) {
+        return h
+          .response({
+            status: 'fail',
+            message: error.message,
+          })
+          .code(error.statusCode);
+      }
+
+      console.error(error);
       return h
         .response({
-          status: 'fail',
-          message: error.message,
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         })
-        .code(404);
+        .code(500);
     }
   }
 
@@ -80,12 +102,22 @@ class NotesHandler {
         message: 'Catatan berhasil diperbarui',
       };
     } catch (error) {
+      if (error instanceof ClientError) {
+        return h
+          .response({
+            status: 'fail',
+            message: error.message,
+          })
+          .code(error.statusCode);
+      }
+
+      console.error(error);
       return h
         .response({
-          status: 'fail',
-          message: error.message,
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         })
-        .code(404);
+        .code(500);
     }
   }
 
@@ -100,12 +132,22 @@ class NotesHandler {
         message: 'Catatan berhasil dihapus',
       };
     } catch (error) {
+      if (error instanceof ClientError) {
+        return h
+          .response({
+            status: 'fail',
+            message: error.message,
+          })
+          .code(error.statusCode);
+      }
+
+      console.error(error);
       return h
         .response({
-          status: 'fail',
-          message: 'Catatan gagal dihapus. Id tidak ditemukan',
+          status: 'error',
+          message: 'Maaf, terjadi kegagalan pada server kami.',
         })
-        .code(404);
+        .code(500);
     }
   }
 }
