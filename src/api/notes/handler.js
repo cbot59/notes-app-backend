@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 class NotesHandler {
-  constructor(service) {
+  constructor(service, validator) {
     this._service = service;
+    this._validator = validator;
 
     this.postNoteHandler = this.postNoteHandler.bind(this);
     this.getNotesHandler = this.getNotesHandler.bind(this);
@@ -14,6 +15,7 @@ class NotesHandler {
     const { title = 'untitled', body, tags } = request.payload;
 
     try {
+      this._validator.validateNotePayload(request.payload);
       const noteId = this._service.addNote({ title, body, tags });
 
       return h
@@ -70,6 +72,7 @@ class NotesHandler {
     const { id } = request.params;
 
     try {
+      this._validator.validateNotePayload(request.payload);
       this._service.editNoteById(id, request.payload);
 
       return {
