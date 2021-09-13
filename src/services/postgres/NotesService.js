@@ -113,7 +113,7 @@ class NotesService {
       }
 
       try {
-        await this._collaborationService.verifyCollaborator(noteId, userId);
+        await this._collaborationService.verifyCollabolator(noteId, userId);
       } catch {
         throw error;
       }
