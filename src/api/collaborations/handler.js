@@ -17,7 +17,7 @@ class CollaborationsHandler {
 
       const { id: credentialId } = request.auth.credentials;
       const { noteId, userId } = request.payload;
-      this._notesService.verifyNoteOwner(noteId, credentialId);
+      await this._notesService.verifyNoteOwner(noteId, credentialId);
 
       const collaborationId =
         await this._collaborationsService.addCollaboration(noteId, userId);
