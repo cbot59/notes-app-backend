@@ -26,10 +26,10 @@ const init = async () => {
     },
   });
 
-  const notesService = new NotesService();
+  const collaborationService = new CollaborationsService();
+  const notesService = new NotesService(collaborationService);
   const usersService = new UsersService();
   const authenticationsService = new AuthenticationsService();
-  const collaborationService = new CollaborationsService();
 
   // registrasi plugin eksternal
   await server.register([
