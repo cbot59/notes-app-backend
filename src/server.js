@@ -26,8 +26,8 @@ const init = async () => {
     },
   });
 
-  const collaborationService = new CollaborationsService();
-  const notesService = new NotesService(collaborationService);
+  const collaborationsService = new CollaborationsService();
+  const notesService = new NotesService(collaborationsService);
   const usersService = new UsersService();
   const authenticationsService = new AuthenticationsService();
 
@@ -82,7 +82,7 @@ const init = async () => {
     {
       plugin: collaborations,
       options: {
-        collaborationService,
+        collaborationsService,
         notesService,
         validator: CollaborationsValidator,
       },
