@@ -102,6 +102,7 @@ class NotesHandler {
 
     try {
       await this._service.verifyNoteAccess(id, credentialId);
+      await this._validator.validateNotePayload(request.payload);
       await this._service.editNoteById(id, request.payload);
 
       return {
